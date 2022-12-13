@@ -9,6 +9,7 @@ import { ChannelPage, fetchChannel } from "./components/ChannelPage";
 import { ErrorPage } from "./components/ErrorPage";
 import { fetchFrontPage, FrontPage } from "./components/FrontPage";
 import { Root } from "./components/Root";
+import { ThrownPage } from "./components/ThrownPage";
 import "./index.css";
 
 const channelPageLoader: LoaderFunction = async ({ params }) => {
@@ -24,14 +25,19 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     children: [
       {
-        path: "/",
-        element: <FrontPage />,
-        loader: frontPageLoader,
-      },
-      {
-        path: "channel/:channelLogin",
-        element: <ChannelPage />,
-        loader: channelPageLoader,
+        errorElement: <ThrownPage />,
+        children: [
+          {
+            index: true,
+            element: <FrontPage />,
+            loader: frontPageLoader,
+          },
+          {
+            path: "channel/:channelLogin",
+            element: <ChannelPage />,
+            loader: channelPageLoader,
+          },
+        ],
       },
     ],
   },
@@ -39,6 +45,6 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <RouterProvider router={router} fallbackElement={<Root />} />
   </React.StrictMode>
 );
