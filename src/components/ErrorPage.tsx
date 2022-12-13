@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { useRouteError } from "react-router-dom";
+import { Link, useRouteError } from "react-router-dom";
 import { is } from "typescript-json";
 
 type Error = {
@@ -12,9 +12,9 @@ type Error = {
 export const ErrorPage: FC = () => {
   const err = useRouteError();
   return (
-    <div className="mx-auto max-w-7xl text-sm font-medium bg-black text-zinc-100 my-4 overflow-hidden">
-      <p className="text-2xl text-center py-2 font-extrabold text-black bg-purple-500">
-        Twitch VODs
+    <div className="mx-auto max-w-7xl text-sm font-medium bg-zinc-900 my-4 overflow-hidden">
+      <p className="text-2xl text-center py-2 font-extrabold text-zinc-900 bg-purple-500">
+        <Link to={"/"}>Twitch VODs</Link>
       </p>
       <div className="px-5 py-5 space-y-3">
         {is<Error>(err) ? (

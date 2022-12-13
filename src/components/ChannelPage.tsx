@@ -1,87 +1,8 @@
 import { FC } from "react";
 import { useLoaderData } from "react-router-dom";
-import { is } from "typescript-json";
+import { Res } from "../routes/channel";
+import { durationToString } from "../utils";
 
-type Streams = Stream[];
-type Stream = {
-  Link: string;
-  Metadata: Metadata;
-};
-type Metadata = {
-  ID: string;
-  LastUpdatedAt: string;
-  MaxViews: number;
-  StartTime: string;
-  StreamerID: string;
-  StreamID: string;
-  StreamerLoginAtStart: string;
-  GameNameAtStart: string;
-  LanguageAtStart: string;
-  TitleAtStart: string;
-  IsMatureAtStart: boolean;
-  GameIDAtStart: string;
-  LastUpdatedMinusStartTimeSeconds: number;
-  RecordingFetchedAt: RecordingFetchedAt;
-  HlsDomain: HlsDomain;
-  BytesFound: BytesFound;
-  SeekPreviewsDomain: SeekPreviewsDomain;
-  Public: Public;
-  SubOnly: SubOnly;
-  HlsDurationSeconds: HlsDurationSeconds;
-};
-type RecordingFetchedAt = {
-  Time: string;
-  Valid: boolean;
-};
-type HlsDomain = {
-  String: string;
-  Valid: boolean;
-};
-type BytesFound = {
-  Bool: boolean;
-  Valid: boolean;
-};
-type SeekPreviewsDomain = {
-  String: string;
-  Valid: boolean;
-};
-type Public = {
-  Bool: boolean;
-  Valid: boolean;
-};
-type SubOnly = {
-  Bool: boolean;
-  Valid: boolean;
-};
-type HlsDurationSeconds = {
-  Float64: number;
-  Valid: boolean;
-};
-type ResGood = {
-  readonly result: "good";
-  readonly data: Stream[];
-};
-type ResMisformatted = {
-  readonly result: "misformattted";
-};
-type ResError = {
-  readonly result: "error";
-};
-type Res = ResGood | ResError | ResMisformatted;
-export const fetchChannel = async (channelLogin: string): Promise<Res> => {
-  try {
-    const response = await fetch(
-      `http://localhost:3000/channels/${channelLogin}`
-    );
-    const data = (await response.json()) as unknown;
-    if (is<Streams>(data)) {
-      return { result: "good", data } as const;
-    }
-    return { result: "misformattted" } as const;
-  } catch {
-    return { result: "error" } as const;
-  }
-};
 export const ChannelPage: FC = () => {
   const vods = useLoaderData() as Res;
   return (
@@ -99,12 +20,15 @@ export const ChannelPage: FC = () => {
             >
               <div className="flex flex-col whitespace-nowrap text-ellipsis overflow-hidden ticker-shadow w-full">
                 <div className="text-xs font-normal">
-                  {new Date(vod.StartTime).toUTCString()}
+                  {`${new Date(vod.StartTime)
+                    .toISOString()
+                    .replace("T", " ")
+                    .substring(0, 19)} GMT`}
                 </div>
-                <div className="text-zinc-300">
+                <div>
                   {vod.BytesFound.Bool ? (
                     <a
-                      className="underline hover:bg-white hover:text-black"
+                      className="underline hover:bg-zinc-50 hover:text-zinc-900"
                       href={`http://localhost:3000${Link}`}
                       target="_blank"
                     >
@@ -116,11 +40,19 @@ export const ChannelPage: FC = () => {
                 </div>
               </div>
               <div className="flex space-x-2 flex-row">
-                <div className="whitespace-nowrap">
-                  {vod.BytesFound.Bool ? "Found" : "Not found"}
-                </div>
-                <div>{vod.Public.Bool ? "Public" : "Private"}</div>
-                <div>{vod.StreamID}</div>
+                {vod.HlsDurationSeconds.Valid && (
+                  <div>{durationToString(vod.HlsDurationSeconds.Float64)}</div>
+                )}
+                {vod.BytesFound.Valid && (
+                  <div className="whitespace-nowrap">
+                    {vod.BytesFound.Bool ? "Found" : "Not found"}
+                  </div>
+                )}
+                {vod.Public.Valid && (
+                  <div>{vod.Public.Bool ? "Public" : "Private"}</div>
+                )}
+                <div className="whitespace-nowrap">{vod.GameNameAtStart}</div>
+                <div>{vod.LanguageAtStart}</div>
                 <div>{vod.MaxViews}</div>
                 <div>{vod.StreamID}</div>
                 <div>{vod.StreamerLoginAtStart}</div>
