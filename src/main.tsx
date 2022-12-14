@@ -35,7 +35,7 @@ const router = createBrowserRouter([
             loader: frontPageLoader,
           },
           {
-            path: "channel/:channelLogin",
+            path: "channels/:channelLogin",
             element: <ChannelPage />,
             loader: channelPageLoader,
           },

@@ -32,7 +32,7 @@ export const FrontPage: FC = () => {
                 <div>
                   <Link
                     className="underline hover:text-zinc-900 hover:bg-zinc-50"
-                    to={`/channel/${vod.StreamerLoginAtStart}`}
+                    to={`/channels/${vod.StreamerLoginAtStart}`}
                   >
                     {vod.StreamerLoginAtStart}
                   </Link>
