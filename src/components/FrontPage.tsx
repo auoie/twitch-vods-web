@@ -1,6 +1,7 @@
 import { FC } from "react";
 import { Link, useLoaderData } from "react-router-dom";
 import { Res } from "../routes/front";
+import { durationToString } from "../utils";
 
 export const FrontPage: FC = () => {
   const vods = useLoaderData() as Res;
@@ -12,7 +13,7 @@ export const FrontPage: FC = () => {
         <>Fetch failed.</>
       ) : (
         <>
-          {vods.data.map((vod) => (
+          {vods.data.map(({ Link: vodLink, Metadata: vod }) => (
             <div
               key={vod.StreamID}
               className="flex flex-row justify-between items-center"
@@ -24,9 +25,34 @@ export const FrontPage: FC = () => {
                     .replace("T", " ")
                     .substring(0, 19)} GMT`}
                 </div>
-                <div>{vod.TitleAtStart}</div>
+                <div>
+                  {vod.BytesFound.Bool ? (
+                    <a
+                      className="underline hover:bg-zinc-50 hover:text-zinc-900"
+                      href={`http://localhost:3000${vodLink}`}
+                      target="_blank"
+                    >
+                      {vod.TitleAtStart}
+                    </a>
+                  ) : (
+                    vod.TitleAtStart
+                  )}
+                </div>
               </div>
               <div className="flex space-x-2 flex-row">
+                {vod.HlsDurationSeconds.Valid && (
+                  <div>{durationToString(vod.HlsDurationSeconds.Float64)}</div>
+                )}
+                {vod.BytesFound.Valid && (
+                  <div className="whitespace-nowrap">
+                    {vod.BytesFound.Bool ? "Found" : "Not found"}
+                  </div>
+                )}
+                {vod.Public.Valid && (
+                  <div>{vod.Public.Bool ? "Public" : "Private"}</div>
+                )}
+                <div className="whitespace-nowrap">{vod.GameNameAtStart}</div>
+                <div>{vod.LanguageAtStart}</div>
                 <div>{vod.MaxViews}</div>
                 <div>{vod.StreamID}</div>
                 <div>
