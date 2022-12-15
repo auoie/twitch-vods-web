@@ -16,9 +16,9 @@ export const ChannelPage: FC = () => {
           {vods.data.map(({ Link, Metadata: vod }) => (
             <div
               key={vod.StreamID}
-              className="flex flex-row justify-between items-center"
+              className="flex flex-row justify-between items-center whitespace-nowrap"
             >
-              <div className="flex flex-col whitespace-nowrap text-ellipsis overflow-hidden ticker-shadow w-full">
+              <div className="flex flex-col text-ellipsis overflow-hidden ticker-shadow w-full">
                 <div className="text-xs font-normal">
                   {`${new Date(vod.StartTime)
                     .toISOString()
@@ -44,14 +44,17 @@ export const ChannelPage: FC = () => {
                   <div>{durationToString(vod.HlsDurationSeconds.Float64)}</div>
                 )}
                 {vod.BytesFound.Valid && (
-                  <div className="whitespace-nowrap">
-                    {vod.BytesFound.Bool ? "Found" : "Not found"}
-                  </div>
+                  <div>{vod.BytesFound.Bool ? "Found" : "Not found"}</div>
                 )}
                 {vod.Public.Valid && (
                   <div>{vod.Public.Bool ? "Public" : "Private"}</div>
                 )}
-                <div className="whitespace-nowrap">{vod.GameNameAtStart}</div>
+                {vod.SubOnly.Valid && (
+                  <div className="">
+                    {vod.SubOnly.Bool ? "Sub-Only" : "No-Sub"}
+                  </div>
+                )}
+                <div>{vod.GameNameAtStart}</div>
                 <div>{vod.LanguageAtStart}</div>
                 <div>{vod.MaxViews}</div>
                 <div>{vod.StreamID}</div>
