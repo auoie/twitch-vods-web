@@ -7,7 +7,6 @@ type Stream = {
 };
 type Metadata = {
   ID: string;
-  LastUpdatedAt: string;
   MaxViews: number;
   StartTime: string;
   StreamerID: string;
@@ -18,29 +17,13 @@ type Metadata = {
   TitleAtStart: string;
   IsMatureAtStart: boolean;
   GameIDAtStart: string;
-  LastUpdatedMinusStartTimeSeconds: number;
-  RecordingFetchedAt: RecordingFetchedAt;
-  HlsDomain: HlsDomain;
   BytesFound: BytesFound;
-  SeekPreviewsDomain: SeekPreviewsDomain;
   Public: Public;
   SubOnly: SubOnly;
   HlsDurationSeconds: HlsDurationSeconds;
 };
-type RecordingFetchedAt = {
-  Time: string;
-  Valid: boolean;
-};
-type HlsDomain = {
-  String: string;
-  Valid: boolean;
-};
 type BytesFound = {
   Bool: boolean;
-  Valid: boolean;
-};
-type SeekPreviewsDomain = {
-  String: string;
   Valid: boolean;
 };
 type Public = {
@@ -68,9 +51,7 @@ type ResError = {
 export type Res = ResGood | ResError | ResMisformatted;
 export const fetchFrontPage = async (): Promise<Res> => {
   try {
-    const response = await fetch(
-      "http://localhost:3000/all/new/private/sub"
-    );
+    const response = await fetch("http://localhost:3000/all/private/sub");
     const data = (await response.json()) as unknown;
     if (is<Streams>(data)) {
       return { result: "good", data } as const;

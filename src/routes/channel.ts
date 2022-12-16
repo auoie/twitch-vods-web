@@ -7,7 +7,6 @@ type Stream = {
 };
 type Metadata = {
   ID: string;
-  LastUpdatedAt: string;
   MaxViews: number;
   StartTime: string;
   StreamerID: string;
@@ -18,29 +17,13 @@ type Metadata = {
   TitleAtStart: string;
   IsMatureAtStart: boolean;
   GameIDAtStart: string;
-  LastUpdatedMinusStartTimeSeconds: number;
-  RecordingFetchedAt: RecordingFetchedAt;
-  HlsDomain: HlsDomain;
   BytesFound: BytesFound;
-  SeekPreviewsDomain: SeekPreviewsDomain;
   Public: Public;
   SubOnly: SubOnly;
   HlsDurationSeconds: HlsDurationSeconds;
 };
-type RecordingFetchedAt = {
-  Time: string;
-  Valid: boolean;
-};
-type HlsDomain = {
-  String: string;
-  Valid: boolean;
-};
 type BytesFound = {
   Bool: boolean;
-  Valid: boolean;
-};
-type SeekPreviewsDomain = {
-  String: string;
   Valid: boolean;
 };
 type Public = {
