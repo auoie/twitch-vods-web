@@ -10,7 +10,7 @@ export const ChannelPage: FC = () => {
       {vods.result === "misformattted" ? (
         <>Misformatted response.</>
       ) : vods.result === "error" ? (
-        <>Channel not found.</>
+        <>Channel <code>`{vods.channel}`</code> not found.</>
       ) : (
         <>
           {vods.data.map(({ Link, Metadata: vod }) => (

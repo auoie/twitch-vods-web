@@ -64,6 +64,7 @@ type ResMisformatted = {
 };
 type ResError = {
   readonly result: "error";
+  readonly channel: string;
 };
 export type Res = ResGood | ResError | ResMisformatted;
 export const fetchChannel = async (channelLogin: string): Promise<Res> => {
@@ -77,6 +78,6 @@ export const fetchChannel = async (channelLogin: string): Promise<Res> => {
     }
     return { result: "misformattted" } as const;
   } catch {
-    return { result: "error" } as const;
+    return { result: "error", channel: channelLogin  } as const;
   }
 };

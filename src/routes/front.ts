@@ -69,7 +69,7 @@ export type Res = ResGood | ResError | ResMisformatted;
 export const fetchFrontPage = async (): Promise<Res> => {
   try {
     const response = await fetch(
-      "http://localhost:3000/highest_viewed_private_available"
+      "http://localhost:3000/all/new/private/sub"
     );
     const data = (await response.json()) as unknown;
     if (is<Streams>(data)) {
