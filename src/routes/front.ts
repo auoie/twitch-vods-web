@@ -1,10 +1,11 @@
 import { is } from "typescript-json";
 import { Res, Streams } from "./type";
 
+export type TFrontPage = Res<unknown>
 export const fetchFrontPage = async (
   pubStatus: "public" | "private",
   subStatus: "sub" | "free"
-): Promise<Res<unknown>> => {
+): Promise<TFrontPage> => {
   try {
     const response = await fetch(
       `http://localhost:3000/all/${pubStatus}/${subStatus}`

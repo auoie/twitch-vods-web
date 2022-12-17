@@ -1,10 +1,10 @@
 import { FC } from "react";
 import { useLoaderData } from "react-router-dom";
-import { Res } from "../routes/type";
+import { TChannelPage } from "../routes/channel";
 import { Streams } from "./Streams";
 
 export const ChannelPage: FC = () => {
-  const vods = useLoaderData() as Res<{readonly channel: string}>;
+  const vods = useLoaderData() as TChannelPage;
   return (
     <div className="px-5 py-5 space-y-3">
       {vods.result === "misformatted" ? (

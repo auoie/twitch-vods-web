@@ -1,10 +1,10 @@
 import { FC } from "react";
 import { useLoaderData } from "react-router-dom";
-import { Res } from "../routes/type";
+import { TFrontPage } from "../routes/front";
 import { Streams } from "./Streams";
 
 export const FrontPage: FC = () => {
-  const vods = useLoaderData() as Res<unknown>;
+  const vods = useLoaderData() as TFrontPage;
   return (
     <div className="px-5 py-5 space-y-3">
       {vods.result === "misformatted" ? (

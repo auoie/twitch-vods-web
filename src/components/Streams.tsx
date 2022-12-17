@@ -22,7 +22,7 @@ export const Streams: FC<{ vods: StreamArr }> = ({ vods }) => {
             {vod.BytesFound.Bool ? (
               <div className="flex flex-row items-center">
                 <a
-                  className="text-purple-400"
+                  className="text-purple-400  hover:text-purple-300"
                   href={`http://localhost:3000${vodLink}`}
                   target="_blank"
                 >
@@ -53,7 +53,7 @@ export const Streams: FC<{ vods: StreamArr }> = ({ vods }) => {
             <div>{vod.StreamID}</div>
             <div>
               <Link
-                className="text-purple-400"
+                className="text-purple-400 hover:text-purple-300"
                 to={`/channels/${vod.StreamerLoginAtStart}`}
               >
                 {vod.StreamerLoginAtStart}
