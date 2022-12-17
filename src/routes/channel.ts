@@ -1,7 +1,9 @@
 import { is } from "typescript-json";
 import { Res, Streams } from "./type";
 
-export const fetchChannel = async (channelLogin: string): Promise<Res> => {
+export const fetchChannel = async (
+  channelLogin: string
+): Promise<Res<{ readonly channel: string }>> => {
   try {
     const response = await fetch(
       `http://localhost:3000/channels/${channelLogin}`
@@ -12,6 +14,6 @@ export const fetchChannel = async (channelLogin: string): Promise<Res> => {
     }
     return { result: "misformatted" } as const;
   } catch {
-    return { result: "error", data: channelLogin } as const;
+    return { result: "error", channel: channelLogin } as const;
   }
 };

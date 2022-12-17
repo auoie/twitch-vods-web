@@ -43,8 +43,7 @@ type ResGood = {
 type ResMisformatted = {
   readonly result: "misformatted";
 };
-type ResError = {
+type ResError<T> = {
   readonly result: "error";
-  readonly data?: string;
-};
-export type Res = ResGood | ResError | ResMisformatted;
+} & T;
+export type Res<T> = ResGood | ResError<T> | ResMisformatted;

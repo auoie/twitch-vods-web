@@ -4,7 +4,7 @@ import { Res } from "../routes/type";
 import { Streams } from "./Streams";
 
 export const FrontPage: FC = () => {
-  const vods = useLoaderData() as Res;
+  const vods = useLoaderData() as Res<unknown>;
   return (
     <div className="px-5 py-5 space-y-3">
       {vods.result === "misformatted" ? (

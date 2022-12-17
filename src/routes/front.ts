@@ -4,7 +4,7 @@ import { Res, Streams } from "./type";
 export const fetchFrontPage = async (
   pubStatus: "public" | "private",
   subStatus: "sub" | "free"
-): Promise<Res> => {
+): Promise<Res<unknown>> => {
   try {
     const response = await fetch(
       `http://localhost:3000/all/${pubStatus}/${subStatus}`
