@@ -11,9 +11,11 @@ import { FrontPage } from "./components/FrontPage";
 import { LanguagePage } from "./components/LanguagePage";
 import { Root } from "./components/Root";
 import { ThrownPage } from "./components/ThrownPage";
+import { CategoryPage } from "./components/CategoryPage";
 import { fetchChannel } from "./routes/channel";
 import { fetchFrontPage } from "./routes/front";
 import { fetchLanguagePage } from "./routes/language";
+import { fetchCategoryPage } from "./routes/category";
 import "./index.css";
 
 const channelPageLoader: LoaderFunction = async ({ params }) => {
@@ -24,6 +26,9 @@ const frontPageLoader: LoaderFunction = async () => {
 };
 const languagePageLoader: LoaderFunction = async ({ params }) => {
   return fetchLanguagePage(params["language"] as string, "private", "sub");
+};
+const categoryPageloader: LoaderFunction = async ({ params }) => {
+  return fetchCategoryPage(params["categoryId"] as string, "private", "sub");
 };
 const router = createBrowserRouter([
   {
@@ -48,6 +53,11 @@ const router = createBrowserRouter([
             path: "language/:language",
             element: <LanguagePage />,
             loader: languagePageLoader,
+          },
+          {
+            path: "categories/:categoryId",
+            element: <CategoryPage />,
+            loader: categoryPageloader,
           },
         ],
       },
