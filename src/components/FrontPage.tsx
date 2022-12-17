@@ -1,13 +1,14 @@
 import { FC } from "react";
 import { Link, useLoaderData } from "react-router-dom";
-import { Res } from "../routes/front";
 import { durationToString } from "../utils";
+import { BiLinkExternal } from "react-icons/bi";
+import { Res } from "../routes/type";
 
 export const FrontPage: FC = () => {
   const vods = useLoaderData() as Res;
   return (
     <div className="px-5 py-5 space-y-3">
-      {vods.result === "misformattted" ? (
+      {vods.result === "misformatted" ? (
         <>Misformatted response.</>
       ) : vods.result === "error" ? (
         <>Fetch failed.</>
@@ -25,19 +26,20 @@ export const FrontPage: FC = () => {
                     .replace("T", " ")
                     .substring(0, 19)} GMT`}
                 </div>
-                <div>
-                  {vod.BytesFound.Bool ? (
+                {vod.BytesFound.Bool ? (
+                  <div className="flex flex-row items-center">
                     <a
-                      className="underline hover:bg-zinc-50 hover:text-zinc-900"
+                      className="text-purple-400"
                       href={`http://localhost:3000${vodLink}`}
                       target="_blank"
                     >
                       {vod.TitleAtStart}
                     </a>
-                  ) : (
-                    vod.TitleAtStart
-                  )}
-                </div>
+                    <BiLinkExternal className="w-4 h-4 flex-shrink-0 ml-1" />
+                  </div>
+                ) : (
+                  <div>{vod.TitleAtStart}</div>
+                )}
               </div>
               <div className="flex space-x-2 flex-row">
                 {vod.HlsDurationSeconds.Valid && (
@@ -60,7 +62,7 @@ export const FrontPage: FC = () => {
                 <div>{vod.StreamID}</div>
                 <div>
                   <Link
-                    className="underline hover:text-zinc-900 hover:bg-zinc-50"
+                    className="text-purple-400"
                     to={`/channels/${vod.StreamerLoginAtStart}`}
                   >
                     {vod.StreamerLoginAtStart}

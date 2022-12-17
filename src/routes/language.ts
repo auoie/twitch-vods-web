@@ -1,10 +1,14 @@
 import { is } from "typescript-json";
 import { Res, Streams } from "./type";
 
-export const fetchChannel = async (channelLogin: string): Promise<Res> => {
+export const fetchLanguagePage = async (
+  language: string,
+  pubStatus: "public" | "private",
+  subStatus: "sub" | "free"
+): Promise<Res> => {
   try {
     const response = await fetch(
-      `http://localhost:3000/channels/${channelLogin}`
+      `http://localhost:3000/language/${language}/all/${pubStatus}/${subStatus}`
     );
     const data = (await response.json()) as unknown;
     if (is<Streams>(data)) {
@@ -12,6 +16,6 @@ export const fetchChannel = async (channelLogin: string): Promise<Res> => {
     }
     return { result: "misformatted" } as const;
   } catch {
-    return { result: "error", data: channelLogin } as const;
+    return { result: "error" } as const;
   }
 };
