@@ -12,8 +12,8 @@ type Error = {
 export const ErrorPage: FC = () => {
   const err = useRouteError();
   return (
-    <div className="mx-auto max-w-7xl text-sm font-medium bg-zinc-900 my-4 overflow-hidden">
-      <p className="text-2xl text-center py-2 font-extrabold text-zinc-900 bg-purple-500">
+    <div className="mx-auto max-w-screen-2xl text-sm font-medium bg-zinc-900 my-4 overflow-hidden">
+      <p className="text-xl text-center py-2 font-extrabold text-zinc-900 bg-purple-500">
         <Link to={"/"}>Twitch VODs</Link>
       </p>
       <div className="px-5 py-5 space-y-3">
