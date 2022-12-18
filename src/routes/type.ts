@@ -3,7 +3,7 @@ type Stream = {
   Link: string;
   Metadata: Metadata;
 };
-type Metadata = {
+export type Metadata = {
   ID: string;
   MaxViews: number;
   StartTime: string;

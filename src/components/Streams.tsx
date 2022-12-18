@@ -1,9 +1,34 @@
 import { FC } from "react";
 import { BiLinkExternal } from "react-icons/bi";
 import { Link } from "react-router-dom";
-import { Streams as StreamArr } from "../routes/type";
+import { Metadata, Streams as StreamArr } from "../routes/type";
 import { durationToString } from "../utils";
 import { ImageOrEmpty } from "./ImageOrEmpty";
+
+const Game: FC<{ vod: Metadata }> = ({ vod }) => {
+  return vod.BoxArtUrlAtStart !== "" ? (
+    <img
+      src={vod.BoxArtUrlAtStart}
+      width={20}
+      height={28}
+      alt={vod.GameNameAtStart}
+    />
+  ) : vod.GameIDAtStart !== "" ? (
+    <img
+      src={`https://static-cdn.jtvnw.net/ttv-boxart/${vod.GameIDAtStart}-40x56.jpg`}
+      width={20}
+      height={28}
+      alt={vod.GameNameAtStart}
+    />
+  ) : (
+    <img
+      src="https://static-cdn.jtvnw.net/ttv-static/404_boxart-40x56.jpg"
+      width={20}
+      height={28}
+      alt={vod.GameNameAtStart}
+    />
+  );
+};
 
 export const Streams: FC<{ vods: StreamArr }> = ({ vods }) => {
   return (
@@ -48,27 +73,15 @@ export const Streams: FC<{ vods: StreamArr }> = ({ vods }) => {
             {vod.SubOnly.Valid && (
               <div className="">{vod.SubOnly.Bool ? "Sub-Only" : "No-Sub"}</div>
             )}
-            {vod.BoxArtUrlAtStart !== "" ? (
-              <img
-                src={vod.BoxArtUrlAtStart}
-                width={20}
-                height={28}
-                alt={vod.GameNameAtStart}
-              />
-            ) : vod.GameIDAtStart !== "" ? (
-              <img
-                src={`https://static-cdn.jtvnw.net/ttv-boxart/${vod.GameIDAtStart}-40x56.jpg`}
-                width={20}
-                height={28}
-                alt={vod.GameNameAtStart}
-              />
+            {vod.GameIDAtStart !== "" ? (
+              <Link
+                to={`/categories/${vod.GameIDAtStart}`}
+                className="hover:shadow-lg hover:shadow-purple-300"
+              >
+                <Game vod={vod} />
+              </Link>
             ) : (
-              <img
-                src="https://static-cdn.jtvnw.net/ttv-static/404_boxart-40x56.jpg"
-                width={20}
-                height={28}
-                alt={vod.GameNameAtStart}
-              />
+              <Game vod={vod} />
             )}
             <div>{vod.LanguageAtStart}</div>
             <div>{vod.MaxViews}</div>
