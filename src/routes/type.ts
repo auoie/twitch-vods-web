@@ -19,6 +19,8 @@ type Metadata = {
   Public: Public;
   SubOnly: SubOnly;
   HlsDurationSeconds: HlsDurationSeconds;
+  BoxArtUrlAtStart: string;
+  ProfileImageUrlAtStart: string;
 };
 type BytesFound = {
   Bool: boolean;
