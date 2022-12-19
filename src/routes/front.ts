@@ -8,7 +8,7 @@ export const fetchFrontPage = async (
 ): Promise<TFrontPage> => {
   try {
     const response = await fetch(
-      `http://localhost:3000/all/${pubStatus}/${subStatus}`
+      `${import.meta.env.VITE_API_URL}/all/${pubStatus}/${subStatus}`
     );
     const data = (await response.json()) as unknown;
     if (is<Streams>(data)) {

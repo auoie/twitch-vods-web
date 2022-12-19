@@ -9,7 +9,7 @@ export const fetchCategoryPage = async (
 ): Promise<TCategoryPage> => {
   try {
     const response = await fetch(
-      `http://localhost:3000/category/${categoryId}/all/${pubStatus}/${subStatus}`
+      `${import.meta.env.VITE_API_URL}/category/${categoryId}/all/${pubStatus}/${subStatus}`
     );
     const data = (await response.json()) as unknown;
     if (is<Streams>(data)) {

@@ -54,7 +54,7 @@ export const Streams: FC<{ vods: StreamArr }> = ({ vods }) => {
                       <>
                         <a
                           className="text-purple-400  hover:text-purple-300"
-                          href={`http://localhost:3000${vodLink}`}
+                          href={`${import.meta.env.VITE_API_URL}${vodLink}`}
                           target="_blank"
                         >
                           {vod.TitleAtStart}

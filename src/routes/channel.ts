@@ -7,7 +7,7 @@ export const fetchChannel = async (
 ): Promise<TChannelPage> => {
   try {
     const response = await fetch(
-      `http://localhost:3000/channels/${channelLogin}`
+      `${import.meta.env.VITE_API_URL}/channels/${channelLogin}`
     );
     const data = (await response.json()) as unknown;
     if (is<Streams>(data)) {

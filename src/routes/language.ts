@@ -9,7 +9,7 @@ export const fetchLanguagePage = async (
 ): Promise<TLanguagePage> => {
   try {
     const response = await fetch(
-      `http://localhost:3000/language/${language}/all/${pubStatus}/${subStatus}`
+      `${import.meta.env.VITE_API_URL}/language/${language}/all/${pubStatus}/${subStatus}`
     );
     const data = (await response.json()) as unknown;
     if (is<Streams>(data)) {
