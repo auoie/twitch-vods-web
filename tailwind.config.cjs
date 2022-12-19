@@ -7,8 +7,8 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        mono: ["Noto Sans Mono", ...defaultTheme.fontFamily.mono],
-        sans: ["Public Sans", ...defaultTheme.fontFamily.sans],
+        mono: ["IBM Plex Mono", ...defaultTheme.fontFamily.mono],
+        sans: ["Inter", ...defaultTheme.fontFamily.sans],
       },
       colors: {
         zinc: {

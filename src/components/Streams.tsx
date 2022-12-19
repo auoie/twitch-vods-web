@@ -38,13 +38,8 @@ export const Streams: FC<{ vods: StreamArr }> = ({ vods }) => {
           <tr key={vod.StreamID}>
             <td className="w-full pl-4">
               <div className="text-ellipsis overflow-hidden whitespace-nowrap w-full block relative">
-                <div className="text-xs font-normal flex flex-row space-x-2 font-mono">
-                  <div>
-                    {`${new Date(vod.StartTime)
-                      .toISOString()
-                      .replace("T", " ")
-                      .substring(0, 19)} GMT`}
-                  </div>
+                <div className="text-xs font-normal flex flex-row space-x-1 font-mono">
+                  <div>{vod.StartTime}</div>
                   <div>|</div>
                   <div>{vod.StreamID}</div>
                 </div>
@@ -69,21 +64,23 @@ export const Streams: FC<{ vods: StreamArr }> = ({ vods }) => {
               </div>
             </td>
             <td>
-              <div className="w-20 flex items-center justify-end">
+              <div className="w-16 flex items-center justify-end">
                 {vod.HlsDurationSeconds.Valid && (
-                  <div>{durationToString(vod.HlsDurationSeconds.Float64)}</div>
+                  <div className="font-mono text-xs">
+                    {durationToString(vod.HlsDurationSeconds.Float64)}
+                  </div>
                 )}
               </div>
             </td>
             <td>
-              <div className="w-16 justify-center items-center flex">
+              <div className="w-14 justify-center items-center flex text-xs">
                 {vod.Public.Valid && (
                   <div>{vod.Public.Bool ? "Public" : "Private"}</div>
                 )}
               </div>
             </td>
             <td>
-              <div className="w-10 overflow-hidden flex flex-row justify-center">
+              <div className="w-8 overflow-hidden flex flex-row justify-center text-xs">
                 {vod.SubOnly.Valid && (
                   <div className="">{vod.SubOnly.Bool ? "Sub" : "Free"}</div>
                 )}
@@ -106,17 +103,17 @@ export const Streams: FC<{ vods: StreamArr }> = ({ vods }) => {
               </div>
             </td>
             <td>
-              <div className="w-10 flex justify-center items-center">
+              <div className="w-10 flex justify-center items-center text-xs">
                 {vod.LanguageAtStart}
               </div>
             </td>
             <td className="pr-2">
-              <div className="w-14 overflow-hidden flex justify-end font-mono items-center">
+              <div className="w-12 overflow-hidden flex justify-end font-mono text-xs items-center">
                 {vod.MaxViews}
               </div>
             </td>
             <td>
-              <div className="w-40 overflow-hidden ticker-shadow">
+              <div className="w-36 overflow-hidden ticker-shadow">
                 <Link
                   className="text-purple-400 hover:text-purple-300"
                   to={`/channels/${vod.StreamerLoginAtStart}`}
