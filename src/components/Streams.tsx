@@ -36,7 +36,7 @@ export const Streams: FC<{ vods: StreamArr }> = ({ vods }) => {
       <tbody className="max-w-min">
         {vods.map(({ Link: vodLink, Metadata: vod }) => (
           <tr key={vod.StreamID}>
-            <td className="w-full">
+            <td className="w-full pl-4">
               <div className="text-ellipsis overflow-hidden whitespace-nowrap w-full block relative">
                 <div className="text-xs font-normal flex flex-row space-x-2 font-mono">
                   <div>
@@ -125,7 +125,7 @@ export const Streams: FC<{ vods: StreamArr }> = ({ vods }) => {
                 </Link>
               </div>
             </td>
-            <td className="">
+            <td className="pr-4">
               <div className="py-1">
                 <ImageOrEmpty
                   src={vod.ProfileImageUrlAtStart}

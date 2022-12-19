@@ -6,14 +6,14 @@ import { Streams } from "./Streams";
 export const CategoryPage: FC = () => {
   const vods = useLoaderData() as TCategoryPage;
   return (
-    <div className="px-4 py-4 space-y-1">
+    <div className="py-4 space-y-1">
       {vods.result === "misformatted" ? (
-        <>Misformatted response.</>
+        <div className="px-4">Misformatted response.</div>
       ) : vods.result === "error" ? (
-        <>Fetch failed.</>
+        <div className="px-4">Fetch failed.</div>
       ) : (
         <>
-          <div className="font-bold text-base">
+          <div className="font-bold text-base px-4">
             {vods.data[0]?.Metadata.GameNameAtStart}
           </div>
           <div className="overflow-x-auto">
