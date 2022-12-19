@@ -4,17 +4,19 @@ import { useNavigation } from "react-router-dom";
 export const Root: FC = () => {
   const navigation = useNavigation();
   return (
-    <div className="mx-auto max-w-screen-2xl text-sm font-medium bg-zinc-900 text-zinc-50 my-2 overflow-hidden">
-      <p className="text-xl text-center py-2 font-extrabold text-zinc-900 bg-purple-500">
-        <Link to={"/"}>Twitch VODs</Link>
-      </p>
-      {navigation.state === "loading" ? (
-        <div className="px-5 py-5 space-y-3">
-          <pre>Loading...</pre>
-        </div>
-      ) : (
-        <Outlet />
-      )}
+    <div className="py-4 mx-auto max-w-screen-2xl flex">
+      <div className="text-sm font-medium bg-zinc-900 text-zinc-50 w-full flex flex-col">
+        <p className="text-xl text-center py-2 font-extrabold text-zinc-900 bg-purple-500">
+          <Link to={"/"}>Twitch VODs</Link>
+        </p>
+        {navigation.state === "loading" ? (
+          <div className="px-5 py-5 space-y-3">
+            <pre>Loading...</pre>
+          </div>
+        ) : (
+          <Outlet />
+        )}
+      </div>
     </div>
   );
 };

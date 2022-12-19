@@ -6,7 +6,7 @@ import { Streams } from "./Streams";
 export const FrontPage: FC = () => {
   const vods = useLoaderData() as TFrontPage;
   return (
-    <div className="px-5 py-5 space-y-2">
+    <div className="px-4 py-4 space-y-1">
       {vods.result === "misformatted" ? (
         <>Misformatted response.</>
       ) : vods.result === "error" ? (
@@ -14,7 +14,9 @@ export const FrontPage: FC = () => {
       ) : (
         <>
           <div className="font-bold text-base">All</div>
-          <Streams vods={vods.data} />
+          <div className="overflow-x-auto">
+            <Streams vods={vods.data} />
+          </div>
         </>
       )}
     </div>

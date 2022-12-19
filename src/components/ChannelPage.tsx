@@ -6,7 +6,7 @@ import { Streams } from "./Streams";
 export const ChannelPage: FC = () => {
   const vods = useLoaderData() as TChannelPage;
   return (
-    <div className="px-5 py-5 space-y-2">
+    <div className="px-4 py-4 space-y-1">
       {vods.result === "misformatted" ? (
         <>Misformatted response.</>
       ) : vods.result === "error" ? (
@@ -18,7 +18,9 @@ export const ChannelPage: FC = () => {
           <div className="font-bold text-base">
             {vods.data[0]?.Metadata.StreamerLoginAtStart}
           </div>
-          <Streams vods={vods.data} />
+          <div className="overflow-x-auto">
+            <Streams vods={vods.data} />
+          </div>
         </>
       )}
     </div>
