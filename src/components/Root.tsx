@@ -8,7 +8,7 @@ export const Root: FC = () => {
   return (
     <div className="pb-4 mx-auto max-w-screen-2xl flex">
       <div className="text-sm font-medium w-full flex flex-col">
-        <div className="text-xl pl-4 py-2 font-extrabold bg-purple-600 dark:bg-purple-500 text-white dark:text-zinc-950 flex flex-row items-center">
+        <div className="text-xl pl-2 py-2 font-extrabold bg-purple-400 text-white dark:text-zinc-950 flex flex-row items-center">
           <Link
             to={"/"}
             className="flex flex-row items-center hover:opacity-75"
@@ -20,7 +20,7 @@ export const Root: FC = () => {
           <ThemeToggle />
         </div>
         {navigation.state === "loading" ? (
-          <div className="px-5 py-5 space-y-3">
+          <div className="px-2 py-2 space-y-3">
             <pre>Loading...</pre>
           </div>
         ) : (

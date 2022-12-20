@@ -36,19 +36,33 @@ export const Streams: FC<{ vods: StreamArr }> = ({ vods }) => {
       <tbody className="max-w-min">
         {vods.map(({ Link: vodLink, Metadata: vod }) => (
           <tr key={vod.ID}>
-            <td className="w-full pl-4">
+            <td className="pl-2">
+              <div className="py-1">
+                <div className="hover:shadow-lg hover:shadow-purple-400">
+                  <Link to={`/channels/@${vod.StreamerLoginAtStart}`}>
+                    <ImageOrEmpty
+                      src={vod.ProfileImageUrlAtStart}
+                      className="w-[35px] h-[35px] bg-purple-400 text-white dark:text-zinc-950 flex items-center justify-center text-xl select-none"
+                    />
+                  </Link>
+                </div>
+              </div>
+            </td>
+            <td className="w-full ticker-shadow pl-2">
               <div className="text-ellipsis overflow-hidden whitespace-nowrap w-full block relative">
                 <div className="text-xs font-normal flex flex-row space-x-1 font-mono">
                   <div>{vod.StartTime}</div>
                   <div>|</div>
                   <div>{vod.StreamID}</div>
+                  <div>|</div>
+                  <div className="w-28">{vod.StreamerLoginAtStart}</div>
                 </div>
-                <div className="relative block h-5 ticker-shadow">
+                <div className="relative block h-5">
                   <div className="flex flex-row items-center whitespace-nowrap absolute">
                     {vod.BytesFound.Bool ? (
                       <>
                         <a
-                          className=" text-purple-600 hover:text-purple-400 dark:text-purple-400  dark:hover:text-purple-300"
+                          className=" text-purple-400 hover:text-purple-500"
                           href={`${import.meta.env.VITE_API_URL}${vodLink}`}
                           target="_blank"
                         >
@@ -89,10 +103,7 @@ export const Streams: FC<{ vods: StreamArr }> = ({ vods }) => {
             <td>
               <div className="w-[25px]">
                 <div className="hover:shadow-lg hover:shadow-purple-400">
-                  <Link
-                    to={`/categories/@${vod.GameIDAtStart}`}
-                    className="hover:shadow-lg hover:shadow-purple-300"
-                  >
+                  <Link to={`/categories/@${vod.GameIDAtStart}`}>
                     <Game vod={vod} />
                   </Link>
                 </div>
@@ -108,24 +119,7 @@ export const Streams: FC<{ vods: StreamArr }> = ({ vods }) => {
                 {vod.MaxViews}
               </div>
             </td>
-            <td>
-              <div className="w-36 overflow-hidden ticker-shadow">
-                <Link
-                  className="text-purple-600 hover:text-purple-400 dark:text-purple-400  dark:hover:text-purple-300"
-                  to={`/channels/@${vod.StreamerLoginAtStart}`}
-                >
-                  {vod.StreamerLoginAtStart}
-                </Link>
-              </div>
-            </td>
-            <td className="pr-4">
-              <div className="py-1">
-                <ImageOrEmpty
-                  src={vod.ProfileImageUrlAtStart}
-                  className="w-[35px] h-[35px]"
-                />
-              </div>
-            </td>
+            <td></td>
           </tr>
         ))}
       </tbody>
