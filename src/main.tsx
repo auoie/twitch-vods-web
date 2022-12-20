@@ -16,6 +16,7 @@ import { fetchChannel } from "./routes/channel";
 import { fetchFrontPage } from "./routes/front";
 import { fetchLanguagePage } from "./routes/language";
 import { fetchCategoryPage } from "./routes/category";
+import { Provider } from "jotai";
 import "./index.css";
 
 const channelPageLoader: LoaderFunction = async ({ params }) => {
@@ -66,7 +67,9 @@ const router = createBrowserRouter([
 ]);
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
-  <React.StrictMode>
-    <RouterProvider router={router} fallbackElement={<Root />} />
-  </React.StrictMode>
+  <Provider>
+    <React.StrictMode>
+      <RouterProvider router={router} fallbackElement={<Root />} />
+    </React.StrictMode>
+  </Provider>
 );

@@ -1,9 +1,5 @@
 <!DOCTYPE html>
-<html
-  lang="en"
-  style="color-scheme: dark; scroll-behavior: auto; overflow-y: scroll"
-  class="bg-zinc-950 text-white"
->
+<html lang="en" style="scroll-behavior: auto; overflow-y: scroll">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -13,9 +9,33 @@
       href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&family=Inter:wght@500;700&display=swap"
       rel="stylesheet"
     />
+    <script>
+      !(function () {
+        try {
+          var d = document.documentElement,
+            c = d.classList;
+          c.remove("light", "dark");
+          var e = JSON.parse(localStorage.getItem("theme"));
+          if (e === "light" || e === "dark") {
+            d.style.colorScheme = e;
+            c.add(e);
+          } else {
+            var t = "(prefers-color-scheme: dark)",
+              m = window.matchMedia(t);
+            if (m.media !== t || m.matches) {
+              d.style.colorScheme = "dark";
+              c.add("dark");
+            } else {
+              d.style.colorScheme = "light";
+              c.add("light");
+            }
+          }
+        } catch (e) {}
+      })();
+    </script>
     <title>VODs</title>
   </head>
-  <body>
+  <body class="bg-white dark:bg-zinc-950 text-zinc-950 dark:text-white">
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

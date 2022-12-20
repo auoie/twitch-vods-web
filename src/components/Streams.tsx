@@ -48,7 +48,7 @@ export const Streams: FC<{ vods: StreamArr }> = ({ vods }) => {
                     {vod.BytesFound.Bool ? (
                       <>
                         <a
-                          className="text-purple-400  hover:text-purple-300"
+                          className=" text-purple-600 hover:text-purple-400 dark:text-purple-400  dark:hover:text-purple-300"
                           href={`${import.meta.env.VITE_API_URL}${vodLink}`}
                           target="_blank"
                         >
@@ -115,7 +115,7 @@ export const Streams: FC<{ vods: StreamArr }> = ({ vods }) => {
             <td>
               <div className="w-36 overflow-hidden ticker-shadow">
                 <Link
-                  className="text-purple-400 hover:text-purple-300"
+                  className="text-purple-600 hover:text-purple-400 dark:text-purple-400  dark:hover:text-purple-300"
                   to={`/channels/${vod.StreamerLoginAtStart}`}
                 >
                   {vod.StreamerLoginAtStart}
