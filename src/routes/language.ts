@@ -1,7 +1,7 @@
 import { is } from "typescript-json";
 import { Res, Streams } from "./type";
 
-export type TLanguagePage = Res<unknown>;
+export type TLanguagePage = Res<{ readonly language: string }>;
 export const fetchLanguagePage = async (
   language: string,
   pubStatus: "public" | "private",
@@ -9,14 +9,16 @@ export const fetchLanguagePage = async (
 ): Promise<TLanguagePage> => {
   try {
     const response = await fetch(
-      `${import.meta.env.VITE_API_URL}/language/${language}/all/${pubStatus}/${subStatus}`
+      `${
+        import.meta.env.VITE_API_URL
+      }/language/${language}/all/${pubStatus}/${subStatus}`
     );
     const data = (await response.json()) as unknown;
     if (is<Streams>(data)) {
-      return { result: "good", data } as const;
+      return { result: "good", data, language } as const;
     }
-    return { result: "misformatted" } as const;
+    return { result: "misformatted", language } as const;
   } catch {
-    return { result: "error" } as const;
+    return { result: "error", language } as const;
   }
 };

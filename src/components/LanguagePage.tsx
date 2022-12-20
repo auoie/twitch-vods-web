@@ -10,11 +10,14 @@ export const LanguagePage: FC = () => {
       {vods.result === "misformatted" ? (
         <div className="px-4">Misformatted response.</div>
       ) : vods.result === "error" ? (
-        <div className="px-4">Fetch failed.</div>
+        <div className="px-4">
+          Entries for <code>`{vods.language}`</code> not found.
+        </div>
       ) : (
         <>
-          <div className="font-bold text-base px-4">
-            {vods.data[0]?.Metadata.LanguageAtStart}
+          <div className="font-bold text-base px-4 flex items-center h-6">
+            <div className="text-xs font-normal">@</div>
+            <div>{vods.data[0]?.Metadata.LanguageAtStart}</div>
           </div>
           <div className="overflow-x-auto">
             <Streams vods={vods.data} />

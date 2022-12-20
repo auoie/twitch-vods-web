@@ -13,8 +13,9 @@ export const CategoryPage: FC = () => {
         <div className="px-4">Fetch failed.</div>
       ) : (
         <>
-          <div className="font-bold text-base px-4">
-            {vods.data[0]?.Metadata.GameNameAtStart}
+          <div className="font-bold text-base px-4 flex items-center h-6">
+            <div className="text-xs font-normal">@</div>
+            <div>{vods.data[0]?.Metadata.GameNameAtStart}</div>
           </div>
           <div className="overflow-x-auto">
             <Streams vods={vods.data} />

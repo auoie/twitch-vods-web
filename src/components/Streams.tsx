@@ -35,7 +35,7 @@ export const Streams: FC<{ vods: StreamArr }> = ({ vods }) => {
     <table className="w-full">
       <tbody className="max-w-min">
         {vods.map(({ Link: vodLink, Metadata: vod }) => (
-          <tr key={vod.StreamID}>
+          <tr key={vod.ID}>
             <td className="w-full pl-4">
               <div className="text-ellipsis overflow-hidden whitespace-nowrap w-full block relative">
                 <div className="text-xs font-normal flex flex-row space-x-1 font-mono">
@@ -88,18 +88,14 @@ export const Streams: FC<{ vods: StreamArr }> = ({ vods }) => {
             </td>
             <td>
               <div className="w-[25px]">
-                {vod.GameIDAtStart !== "" ? (
-                  <div className="hover:shadow-lg hover:shadow-purple-400">
-                    <Link
-                      to={`/categories/${vod.GameIDAtStart}`}
-                      className="hover:shadow-lg hover:shadow-purple-300"
-                    >
-                      <Game vod={vod} />
-                    </Link>
-                  </div>
-                ) : (
-                  <Game vod={vod} />
-                )}
+                <div className="hover:shadow-lg hover:shadow-purple-400">
+                  <Link
+                    to={`/categories/@${vod.GameIDAtStart}`}
+                    className="hover:shadow-lg hover:shadow-purple-300"
+                  >
+                    <Game vod={vod} />
+                  </Link>
+                </div>
               </div>
             </td>
             <td>
@@ -116,7 +112,7 @@ export const Streams: FC<{ vods: StreamArr }> = ({ vods }) => {
               <div className="w-36 overflow-hidden ticker-shadow">
                 <Link
                   className="text-purple-600 hover:text-purple-400 dark:text-purple-400  dark:hover:text-purple-300"
-                  to={`/channels/${vod.StreamerLoginAtStart}`}
+                  to={`/channels/@${vod.StreamerLoginAtStart}`}
                 >
                   {vod.StreamerLoginAtStart}
                 </Link>

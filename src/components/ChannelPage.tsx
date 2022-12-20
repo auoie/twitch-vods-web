@@ -15,8 +15,9 @@ export const ChannelPage: FC = () => {
         </div>
       ) : (
         <>
-          <div className="font-bold text-base px-4">
-            {vods.data[0]?.Metadata.StreamerLoginAtStart}
+          <div className="font-bold text-base px-4 flex items-center h-6">
+            <div className="text-xs font-normal">@</div>
+            <div>{vods.data[0]?.Metadata.StreamerLoginAtStart}</div>
           </div>
           <div className="overflow-x-auto">
             <Streams vods={vods.data} />

@@ -29,7 +29,7 @@ const languagePageLoader: LoaderFunction = async ({ params }) => {
   return fetchLanguagePage(params["language"] as string, "private", "sub");
 };
 const categoryPageloader: LoaderFunction = async ({ params }) => {
-  return fetchCategoryPage(params["categoryId"] as string, "private", "free");
+  return fetchCategoryPage(params["categoryId"] as string, "private", "sub");
 };
 const router = createBrowserRouter([
   {
