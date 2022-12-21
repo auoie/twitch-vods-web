@@ -1,6 +1,7 @@
 import { FC } from "react";
 import { BsSunFill, BsMoonFill } from "react-icons/bs";
-import { atomWithStorage, useUpdateAtom } from "jotai/utils";
+import { atomWithStorage } from "jotai/utils";
+import { useSetAtom } from "jotai";
 
 type Theme = "light" | "dark";
 const browser = typeof window !== "undefined";
@@ -11,7 +12,7 @@ const themeAtom = atomWithStorage<Theme>(
     : "light"
 );
 export const ThemeToggle: FC = () => {
-  const setTheme = useUpdateAtom(themeAtom);
+  const setTheme = useSetAtom(themeAtom);
   return (
     <button
       className="h-7 w-7 mr-2 flex items-center justify-center hover:opacity-75"

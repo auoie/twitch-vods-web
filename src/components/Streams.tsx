@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { BiLinkExternal } from "react-icons/bi";
 import { Link } from "react-router-dom";
-import { Metadata, Streams as StreamArr } from "../routes/type";
+import { Metadata, Streams as StreamArr } from "../type";
 import { durationToString } from "../utils";
 import { ImageOrEmpty } from "./ImageOrEmpty";
 
