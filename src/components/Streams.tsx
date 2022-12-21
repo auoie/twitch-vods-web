@@ -34,10 +34,7 @@ export const Streams: FC<{ vods: StreamArr }> = ({ vods }) => {
   return (
     <div className="w-full">
       {vods.map(({ Link: vodLink, Metadata: vod }) => (
-        <div
-          key={vod.ID}
-          className="flex flex-col pb-3 pl-2 overflow-hidden ticker-shadow"
-        >
+        <div key={vod.ID} className="flex flex-col pb-3 pl-2">
           <div className="flex flex-row items-center whitespace-nowrap h-5">
             {vod.BytesFound.Bool ? (
               <>

@@ -19,7 +19,7 @@ export const LanguagePage: FC = () => {
             <div className="text-xs font-normal">@</div>
             <div>{vods.data[0]?.Metadata.LanguageAtStart}</div>
           </div>
-          <div className="overflow-x-auto">
+          <div className="overflow-hidden ticker-shadow">
             <Streams vods={vods.data} />
           </div>
         </>

@@ -14,7 +14,7 @@ export const FrontPage: FC = () => {
       ) : (
         <>
           <div className="font-bold text-base px-2">All</div>
-          <div className="overflow-x-auto">
+          <div className="overflow-hidden ticker-shadow">
             <Streams vods={vods.data} />
           </div>
         </>
