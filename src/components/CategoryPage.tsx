@@ -14,7 +14,7 @@ export const CategoryPage: FC = () => {
       ) : (
         <>
           <div className="font-bold text-base px-2 flex items-center h-6">
-            <div className="text-xs font-normal">@</div>
+            <div className="text-xs font-normal flex">@</div>
             <div>{vods.data[0]?.Metadata.GameNameAtStart}</div>
           </div>
           <div className="overflow-x-auto">

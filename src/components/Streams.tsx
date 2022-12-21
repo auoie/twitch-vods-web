@@ -9,22 +9,22 @@ const Game: FC<{ vod: Metadata }> = ({ vod }) => {
   return vod.BoxArtUrlAtStart !== "" ? (
     <img
       src={vod.BoxArtUrlAtStart}
-      width={25}
-      height={35}
+      width={35}
+      height={49}
       alt={vod.GameNameAtStart}
     />
   ) : vod.GameIDAtStart !== "" ? (
     <img
       src={`https://static-cdn.jtvnw.net/ttv-boxart/${vod.GameIDAtStart}-40x56.jpg`}
-      width={25}
-      height={35}
+      width={35}
+      height={49}
       alt={vod.GameNameAtStart}
     />
   ) : (
     <img
       src="https://static-cdn.jtvnw.net/ttv-static/404_boxart-40x56.jpg"
-      width={25}
-      height={28}
+      width={35}
+      height={49}
       alt={vod.GameNameAtStart}
     />
   );
@@ -32,97 +32,113 @@ const Game: FC<{ vod: Metadata }> = ({ vod }) => {
 
 export const Streams: FC<{ vods: StreamArr }> = ({ vods }) => {
   return (
-    <table className="w-full">
-      <tbody className="max-w-min">
-        {vods.map(({ Link: vodLink, Metadata: vod }) => (
-          <tr key={vod.ID}>
-            <td className="pl-2">
-              <div className="py-1">
-                <div className="hover:shadow-lg hover:shadow-purple-400">
-                  <Link to={`/channels/@${vod.StreamerLoginAtStart}`}>
-                    <ImageOrEmpty
-                      src={vod.ProfileImageUrlAtStart}
-                      className="w-[35px] h-[35px] bg-purple-400 text-white dark:text-zinc-950 flex items-center justify-center text-xl select-none"
-                    />
-                  </Link>
-                </div>
-              </div>
-            </td>
-            <td className="w-full ticker-shadow pl-2">
-              <div className="text-ellipsis overflow-hidden whitespace-nowrap w-full block relative">
-                <div className="text-xs font-normal flex flex-row space-x-1 font-mono">
-                  <div>{vod.StartTime}</div>
-                  <div>|</div>
-                  <div>{vod.StreamID}</div>
-                  <div>|</div>
-                  <div className="w-28">{vod.StreamerLoginAtStart}</div>
-                </div>
-                <div className="relative block h-5">
-                  <div className="flex flex-row items-center whitespace-nowrap absolute">
-                    {vod.BytesFound.Bool ? (
-                      <>
-                        <a
-                          className=" text-purple-400 hover:text-purple-500"
-                          href={`${import.meta.env.VITE_API_URL}${vodLink}`}
-                          target="_blank"
-                        >
-                          {vod.TitleAtStart}
-                        </a>
-                        <BiLinkExternal className="w-4 h-4 flex-shrink-0 ml-1" />
-                      </>
-                    ) : (
-                      vod.TitleAtStart
-                    )}
-                  </div>
-                </div>
-              </div>
-            </td>
-            <td>
-              <div className="w-16 flex items-center justify-end">
-                {vod.HlsDurationSeconds.Valid && (
-                  <div className="font-mono text-xs">
-                    {durationToString(vod.HlsDurationSeconds.Float64)}
-                  </div>
-                )}
-              </div>
-            </td>
-            <td>
-              <div className="w-14 justify-center items-center flex text-xs">
-                {vod.Public.Valid && (
-                  <div>{vod.Public.Bool ? "Public" : "Private"}</div>
-                )}
-              </div>
-            </td>
-            <td>
-              <div className="w-8 overflow-hidden flex flex-row justify-center text-xs">
-                {vod.SubOnly.Valid && (
-                  <div className="">{vod.SubOnly.Bool ? "Sub" : "Free"}</div>
-                )}
-              </div>
-            </td>
-            <td>
-              <div className="w-[25px]">
-                <div className="hover:shadow-lg hover:shadow-purple-400">
+    <div className="w-full">
+      {vods.map(({ Link: vodLink, Metadata: vod }) => (
+        <div
+          key={vod.ID}
+          className="flex flex-col pb-3 pl-2 overflow-hidden ticker-shadow"
+        >
+          <div className="flex flex-row items-center whitespace-nowrap h-5">
+            {vod.BytesFound.Bool ? (
+              <>
+                <a
+                  className="text-purple-400 hover:text-purple-500 flex items-center"
+                  href={`${import.meta.env.VITE_API_URL}${vodLink}`}
+                  target="_blank"
+                >
+                  {vod.TitleAtStart}
+                  <BiLinkExternal className="w-4 h-4 flex-shrink-0 ml-1" />
+                </a>
+              </>
+            ) : (
+              vod.TitleAtStart
+            )}
+          </div>
+          <div className="font-mono text-xs flex items-center">
+            <div className="flex flex-row">
+              <Link to={`/channels/@${vod.StreamerLoginAtStart}`}>
+                <ImageOrEmpty
+                  src={vod.ProfileImageUrlAtStart}
+                  className="w-[50px] h-[50px] min-w-[50px] min-h-[50px] hover:shadow-md hover:shadow-purple-400 flex items-center justify-center text-xl select-none"
+                />
+              </Link>
+              <div className="pl-1">
+                <div className="hover:shadow-md hover:shadow-purple-400 w-[35px] min-w-[35px]">
                   <Link to={`/categories/@${vod.GameIDAtStart}`}>
                     <Game vod={vod} />
                   </Link>
                 </div>
               </div>
-            </td>
-            <td>
-              <div className="w-10 flex justify-center items-center text-xs">
-                {vod.LanguageAtStart}
+            </div>
+            <div className="ml-2 w-full">
+              <div className="text-ellipsis whitespace-nowrap w-full">
+                <div className="font-normal flex flex-row">
+                  <div className="w-40 flex-shrink-0 flex justify-end">
+                    {vod.StartTime}
+                  </div>
+                  <div className="w-4 flex justify-center items-center flex-shrink-0">
+                    |
+                  </div>
+                  <div className="w-[57.6px] flex items-center justify-end flex-shrink-0">
+                    {vod.HlsDurationSeconds.Valid && (
+                      <div className="">
+                        {durationToString(vod.HlsDurationSeconds.Float64)}
+                      </div>
+                    )}
+                  </div>
+                  <div className="w-4 flex justify-center items-center flex-shrink-0">
+                    |
+                  </div>
+                </div>
+                <div className="font-normal flex flex-row">
+                  <div className="w-14  flex justify-end items-center flex-shrink-0">
+                    {vod.MaxViews}
+                  </div>
+                  <div className="w-4 flex justify-center items-center flex-shrink-0">
+                    |
+                  </div>
+                  <div className="w-[5.5rem] flex justify-end flex-shrink-0">
+                    {vod.StreamID}
+                  </div>
+                  <div className="w-4 flex justify-center items-center flex-shrink-0">
+                    |
+                  </div>
+                  <div className="">{vod.StreamerLoginAtStart}</div>
+                  <div className="w-4 flex justify-center items-center flex-shrink-0">
+                    |
+                  </div>
+                </div>
+                <div className="font-normal flex flex-row">
+                  <div className="w-14 justify-end items-center flex flex-shrink-0">
+                    {vod.Public.Valid && (
+                      <div>{vod.Public.Bool ? "Public" : "Private"}</div>
+                    )}
+                  </div>
+                  <div className="w-4 flex justify-center items-center flex-shrink-0">
+                    |
+                  </div>
+                  <div className="w-8 flex flex-row justify-end flex-shrink-0">
+                    {vod.SubOnly.Valid && (
+                      <div className="">
+                        {vod.SubOnly.Bool ? "Sub" : "Free"}
+                      </div>
+                    )}
+                  </div>
+                  <div className="w-4 flex justify-center items-center flex-shrink-0">
+                    |
+                  </div>
+                  <div className="w-10 flex justify-end items-center flex-shrink-0">
+                    {vod.LanguageAtStart}
+                  </div>
+                  <div className="w-4 flex justify-center items-center flex-shrink-0">
+                    |
+                  </div>
+                </div>
               </div>
-            </td>
-            <td className="pr-2">
-              <div className="w-12 overflow-hidden flex justify-end font-mono text-xs items-center">
-                {vod.MaxViews}
-              </div>
-            </td>
-            <td></td>
-          </tr>
-        ))}
-      </tbody>
-    </table>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
   );
 };
