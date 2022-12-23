@@ -1,28 +1,46 @@
 import { FC } from "react";
 import { BsSunFill, BsMoonFill } from "react-icons/bs";
-import { atomWithStorage } from "jotai/utils";
-import { useSetAtom } from "jotai";
+import { atomWithStorage, createJSONStorage } from "jotai/utils";
+import { useAtom } from "jotai";
 
 type Theme = "light" | "dark";
 const browser = typeof window !== "undefined";
+const storage = createJSONStorage<Theme>(function () {
+  return window.localStorage;
+});
+const setTheme = (theme: Theme) => {
+  document.documentElement.classList.remove("light", "dark");
+  document.documentElement.classList.add(theme);
+  document.documentElement.style.colorScheme = theme;
+};
 const themeAtom = atomWithStorage<Theme>(
   "theme",
   browser && matchMedia("(prefers-color-scheme: dark)").matches
     ? "dark"
-    : "light"
+    : "light",
+  {
+    ...storage,
+    setItem: (key, newValue) => {
+      storage.setItem(key, newValue);
+      setTheme(newValue);
+    },
+    subscribe: (key, callback) => {
+      const newCallback = (theme: Theme) => {
+        callback(theme);
+        setTheme(theme);
+      };
+      return storage.subscribe!(key, newCallback);
+    },
+  }
 );
 export const ThemeToggle: FC = () => {
-  const setTheme = useSetAtom(themeAtom);
+  const [_, setTheme] = useAtom(themeAtom);
   return (
     <button
       className="h-7 w-7 mr-2 flex items-center justify-center hover:opacity-75"
       onClick={() => {
         setTheme((prev) => {
-          const newTheme = prev === "dark" ? "light" : "dark";
-          document.documentElement.classList.remove("light", "dark");
-          document.documentElement.classList.add(newTheme);
-          document.documentElement.style.colorScheme = newTheme;
-          return newTheme;
+          return prev === "dark" ? "light" : "dark";
         });
       }}
     >
