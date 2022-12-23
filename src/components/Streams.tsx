@@ -76,15 +76,12 @@ export const Streams: FC<{ vods: StreamArr }> = ({ vods }) => {
                   <div className="w-4 flex justify-center items-center flex-shrink-0">
                     |
                   </div>
-                  <div className="w-[57.6px] flex items-center justify-end flex-shrink-0">
+                  <div>
                     {vod.HlsDurationSeconds.Valid && (
-                      <div className="">
+                      <div>
                         {durationToString(vod.HlsDurationSeconds.Float64)}
                       </div>
                     )}
-                  </div>
-                  <div className="w-4 flex justify-center items-center flex-shrink-0">
-                    |
                   </div>
                 </div>
                 <div className="font-normal flex flex-row">
@@ -100,10 +97,7 @@ export const Streams: FC<{ vods: StreamArr }> = ({ vods }) => {
                   <div className="w-4 flex justify-center items-center flex-shrink-0">
                     |
                   </div>
-                  <div className="">{vod.StreamerLoginAtStart}</div>
-                  <div className="w-4 flex justify-center items-center flex-shrink-0">
-                    |
-                  </div>
+                  <div>{vod.StreamerLoginAtStart}</div>
                 </div>
                 <div className="font-normal flex flex-row">
                   <div className="w-14 justify-end items-center flex flex-shrink-0">

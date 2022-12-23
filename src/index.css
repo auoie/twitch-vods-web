@@ -16,6 +16,6 @@
   @apply w-4;
 }
 ::-webkit-scrollbar-thumb {
-  @apply bg-zinc-400 hover:bg-zinc-300 dark:bg-zinc-400 dark:hover:bg-zinc-500 border-4 border-solid border-white dark:border-zinc-950;
+  @apply bg-zinc-300 hover:bg-zinc-400 dark:bg-zinc-400 dark:hover:bg-zinc-500 border-4 border-solid border-white dark:border-zinc-950;
 }
 @tailwind utilities;

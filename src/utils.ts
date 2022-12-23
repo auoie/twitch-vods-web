@@ -7,8 +7,8 @@ export const durationToString = (dur: number): string => {
   const minutes = Math.floor(dur / MIN);
   dur = dur - minutes * MIN;
   const seconds = dur;
-  const secStr = `${seconds}`.padStart(2, '0')
-  const minStr = `${minutes}`.padStart(2, '0')
+  const secStr = `${seconds}`.padStart(2, "0");
+  const minStr = `${minutes}`.padStart(2, "0");
   if (hours > 0) {
     return `${hours}:${minStr}:${secStr}`;
   } else {

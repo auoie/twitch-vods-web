@@ -69,11 +69,11 @@ const queryClient = new QueryClient({
 });
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
-  <QueryClientProvider client={queryClient}>
-    <Provider>
-      <React.StrictMode>
+  <React.StrictMode>
+    <QueryClientProvider client={queryClient}>
+      <Provider>
         <RouterProvider router={router} fallbackElement={<Root />} />
-      </React.StrictMode>
-    </Provider>
-  </QueryClientProvider>
+      </Provider>
+    </QueryClientProvider>
+  </React.StrictMode>
 );
