@@ -1,10 +1,8 @@
 import { FC } from "react";
 import { Link, Outlet } from "react-router-dom";
-import { useNavigation } from "react-router-dom";
 import { HiVideoCamera } from "react-icons/hi";
 import { ThemeToggle } from "./ThemeToggle";
 export const Root: FC = () => {
-  const navigation = useNavigation();
   return (
     <div className="pb-4 mx-auto max-w-6xl flex">
       <div className="text-sm font-medium w-full flex flex-col">
@@ -19,13 +17,7 @@ export const Root: FC = () => {
           <div className="w-full"></div>
           <ThemeToggle />
         </div>
-        {navigation.state === "loading" ? (
-          <div className="px-2 py-2 space-y-3">
-            <pre>Loading...</pre>
-          </div>
-        ) : (
-          <Outlet />
-        )}
+        <Outlet />
       </div>
     </div>
   );
