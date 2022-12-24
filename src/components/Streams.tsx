@@ -124,6 +124,7 @@ export const Streams: FC<{ vods: StreamArr }> = ({ vods }) => {
                   <div className="w-4 flex justify-center items-center flex-shrink-0">
                     |
                   </div>
+                  <div>{vod.GameNameAtStart}</div>
                 </div>
               </div>
             </div>
