@@ -4,7 +4,7 @@ import { Streams as TStreams } from "../type";
 import { useAtomValue } from "jotai";
 import { Filters, publicVods, subOnlyVods } from "./Filters";
 import { useQuery } from "@tanstack/react-query";
-import { is } from "typescript-json";
+import { is } from "typia";
 import { useLoaderData } from "react-router-dom";
 
 export const LanguagePage: FC = () => {

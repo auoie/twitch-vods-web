@@ -3,7 +3,7 @@ import { Streams } from "./Streams";
 import { useAtomValue } from "jotai";
 import { useQuery } from "@tanstack/react-query";
 import { Streams as TStreams } from "../type";
-import { is } from "typescript-json";
+import { is } from "typia";
 import { Filters, publicVods, subOnlyVods } from "./Filters";
 
 export const FrontPage: FC = () => {

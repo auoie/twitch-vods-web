@@ -5,7 +5,7 @@ import { Streams } from "./Streams";
 import { useAtomValue } from "jotai";
 import { Filters, publicVods, subOnlyVods } from "./Filters";
 import { useQuery } from "@tanstack/react-query";
-import { is } from "typescript-json";
+import { is } from "typia";
 
 export const CategoryPage: FC = () => {
   const publicStatus = useAtomValue(publicVods);

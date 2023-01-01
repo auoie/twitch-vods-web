@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { Link, useRouteError } from "react-router-dom";
-import { is } from "typescript-json";
+import { is } from "typia";
 
 type Error = {
   status: number;
