@@ -37,15 +37,17 @@ export const ThemeToggle: FC = () => {
   const [_, setTheme] = useAtom(themeAtom);
   return (
     <button
-      className="h-7 w-7 mr-2 flex items-center justify-center hover:opacity-75"
+      className="px-2 h-10 flex items-center justify-center hover:text-purple-500 text-purple-400 bg-white dark:bg-zinc-950"
       onClick={() => {
         setTheme((prev) => {
           return prev === "dark" ? "light" : "dark";
         });
       }}
     >
-      <BsSunFill className="dark:hidden w-full h-full" />
-      <BsMoonFill className="hidden dark:block w-full h-full" />
+      <div className="h-6 w-8">
+        <BsSunFill className="dark:hidden w-full h-full" />
+        <BsMoonFill className="hidden dark:block w-full h-full" />
+      </div>
     </button>
   );
 };
