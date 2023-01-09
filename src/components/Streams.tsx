@@ -32,7 +32,7 @@ const Game: FC<{ vod: Metadata }> = ({ vod }) => {
 
 export const Streams: FC<{ vods: StreamArr }> = ({ vods }) => {
   return (
-    <div className="w-full">
+    <div className="w-full mb-48">
       {vods.map(({ Link: vodLink, Metadata: vod }) => (
         <div key={vod.ID} className="flex flex-col pb-3 pl-2">
           <div className="flex flex-row items-center whitespace-nowrap h-5">
@@ -119,7 +119,7 @@ export const Streams: FC<{ vods: StreamArr }> = ({ vods }) => {
                     |
                   </div>
                   <div className="w-10 flex justify-end items-center flex-shrink-0">
-                    {vod.LanguageAtStart}
+                    @{vod.LanguageAtStart}
                   </div>
                   <div className="w-4 flex justify-center items-center flex-shrink-0">
                     |

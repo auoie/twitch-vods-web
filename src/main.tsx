@@ -16,6 +16,7 @@ import { Provider } from "jotai";
 import "./index.css";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { LanguageList } from "./components/LanguageList";
+import { CategoryList } from "./components/CategoryList";
 
 const channelPageLoader: LoaderFunction = async ({ params }) => {
   return params["channelLogin"] as string;
@@ -44,6 +45,10 @@ const router = createBrowserRouter([
           {
             path: "languages",
             element: <LanguageList />,
+          },
+          {
+            path: "categories",
+            element: <CategoryList />,
           },
           {
             path: "channels/:channelLogin",

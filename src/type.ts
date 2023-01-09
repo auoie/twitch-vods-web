@@ -54,4 +54,11 @@ export type LanguageEntry = {
   LanguageAtStart: string;
 };
 
+export type CategoryEntries = CategoryEntry[];
+export interface CategoryEntry {
+  Count: number;
+  GameNameAtStart: string;
+  GameIDAtStart: string;
+}
+
 export type Res<Meta> = (ResGood | ResError | ResMisformatted) & Meta;

@@ -1,19 +1,19 @@
 import { FC } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { LanguageEntries } from "../type";
+import { CategoryEntries } from "../type";
 import { is } from "typia";
 import { Link } from "react-router-dom";
 
-export const LanguageList: FC = () => {
+export const CategoryList: FC = () => {
   const queryResponse = useQuery({
-    queryKey: ["languages"],
+    queryKey: ["categories"],
     queryFn: async () => {
       try {
         const response = await fetch(
-          `${import.meta.env.VITE_API_URL}/languages`
+          `${import.meta.env.VITE_API_URL}/categories`
         );
         const data = (await response.json()) as unknown;
-        if (is<LanguageEntries>(data)) {
+        if (is<CategoryEntries>(data)) {
           return { result: "good", data } as const;
         }
         return { result: "misformatted" } as const;
@@ -38,19 +38,20 @@ export const LanguageList: FC = () => {
         <div className="px-2">Fetch failed.</div>
       ) : (
         <>
-          <div className="font-bold text-base pl-2">Languages</div>
+          <div className="font-bold text-base pl-2">
+            200 Popular Categories from Past 24 Hours
+          </div>
           <div className="overflow-hidden">
-            <div className="grid grid-cols-3 sm:grid-cols-4 gap-2 px-2">
+            <div className="space-y-2 px-2 overflow-hidden">
               {vods.data.map((value) => (
                 <div
-                  key={value.LanguageAtStart}
+                  key={value.GameNameAtStart}
                   className="text-white dark:text-zinc-950"
                 >
-                  <div className="bg-purple-400 hover:bg-purple-500 flex-col justify-center items-center w-20 uppercase">
-                    <Link to={`/languages/@${value.LanguageAtStart}`}>
+                  <div className="bg-purple-400 hover:bg-purple-500 flex-col justify-center items-center whitespace-nowrap overflow-hidden">
+                    <Link to={`/categories/@${value.GameIDAtStart}`}>
                       <div className="pl-1 py-1">
-                        <div>@{value.LanguageAtStart}</div>
-                        <div>{value.Count}</div>
+                        @{value.GameNameAtStart} ({value.Count})
                       </div>
                     </Link>
                   </div>
