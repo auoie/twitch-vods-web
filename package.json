@@ -9,13 +9,13 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@tanstack/react-query": "^4.20.9",
+    "@tanstack/react-query": "^4.22.0",
     "jotai": "^1.12.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.7.1",
     "react-router-dom": "^6.6.1",
-    "typia": "^3.4.18"
+    "typia": "^3.4.20"
   },
   "devDependencies": {
     "@rollup/plugin-typescript": "^10.0.1",
