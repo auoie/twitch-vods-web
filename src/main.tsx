@@ -25,11 +25,13 @@ const languagePageLoader: LoaderFunction = async ({ params }) => {
 const categoryPageloader: LoaderFunction = async ({ params }) => {
   return params["categoryId"] as string;
 };
+const errorPageLoader: LoaderFunction = async ({ params }) => {
+  return params["*"] as string;
+};
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Root />,
-    errorElement: <ErrorPage />,
     children: [
       {
         errorElement: <ThrownPage />,
@@ -52,6 +54,11 @@ const router = createBrowserRouter([
             path: "categories/:categoryId",
             element: <CategoryPage />,
             loader: categoryPageloader,
+          },
+          {
+            path: "*",
+            element: <ErrorPage />,
+            loader: errorPageLoader,
           },
         ],
       },

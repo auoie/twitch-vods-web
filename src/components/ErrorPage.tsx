@@ -1,31 +1,12 @@
 import { FC } from "react";
-import { Link, useRouteError } from "react-router-dom";
-import { is } from "typia";
-
-type Error = {
-  status: number;
-  statusText: string;
-  internal: boolean;
-  data: string;
-};
+import { useLoaderData } from "react-router-dom";
 
 export const ErrorPage: FC = () => {
-  const err = useRouteError();
+  const path = useLoaderData() as string;
   return (
-    <div className="mx-auto max-w-screen-2xl text-sm font-medium bg-zinc-900 my-4 overflow-hidden">
-      <p className="text-xl text-center py-2 font-extrabold text-zinc-900 bg-purple-500">
-        <Link to={"/"}>Twitch VODs</Link>
-      </p>
-      <div className="px-5 py-5 space-y-3">
-        {is<Error>(err) ? (
-          <pre>
-            <div>Status: {err.status}</div>
-            <div>Status Text: {err.statusText}</div>
-            <div>{err.data}</div>
-          </pre>
-        ) : (
-          <pre>{JSON.stringify(err, null, 2)}</pre>
-        )}
+    <div className="py-2 space-y-1 overflow-hidden">
+      <div className="px-2">
+        Path <code>`/{path}`</code> not found.
       </div>
     </div>
   );
