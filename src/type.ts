@@ -48,4 +48,10 @@ type ResMisformatted = {
 type ResError = {
   readonly result: "error";
 };
+export type LanguageEntries = LanguageEntry[];
+export type LanguageEntry = {
+  Count: number;
+  LanguageAtStart: string;
+};
+
 export type Res<Meta> = (ResGood | ResError | ResMisformatted) & Meta;
