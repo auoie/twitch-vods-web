@@ -1,19 +1,10 @@
 # Notes
 
-This project is created with `pnpm`, TypeScript, Tailwind CSS, and React JS.
-
 ```bash
-pnpm create vite
+# Install dependencies
+pnpm install
+# Run development server
+VITE_API_URL=http://$(ip -json addr show wlp4s0 | jq -r '.[0].addr_info[0].local'):3000 pnpm dev --host
+# Build assets
+VITE_API_URL=$SITE_URL pnpm build
 ```
-
-## Parsing
-
-I'm using this really cool library [typia](https://github.com/samchon/typia) to parse the data.
-It seems really cool.
-It kind've like Rust in that it uses the generic value to generate runtime code.
-This seems to be [monomorphization](https://rustc-dev-guide.rust-lang.org/backend/monomorph.html).
-
-## Data Fetching
-
-Data fetching in React JS is nontrivial.
-See [here](https://stackoverflow.com/questions/53332321/react-hook-warnings-for-async-function-in-useeffect-useeffect-function-must-ret), [here](https://github.com/facebook/react/issues/14326), and [here](https://www.robinwieruch.de/react-hooks-fetch-data/) for help.
