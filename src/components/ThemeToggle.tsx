@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { BsSunFill, BsMoonFill } from "react-icons/bs";
+import { IoMdFlashlight } from "react-icons/io";
 import { atomWithStorage, createJSONStorage } from "jotai/utils";
 import { useAtom } from "jotai";
 
@@ -45,8 +45,7 @@ export const ThemeToggle: FC = () => {
       }}
     >
       <div className="h-6 w-8">
-        <BsSunFill className="dark:hidden w-full h-full" />
-        <BsMoonFill className="hidden dark:block w-full h-full" />
+        <IoMdFlashlight className="w-full h-full" />
       </div>
     </button>
   );

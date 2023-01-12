@@ -1,16 +1,21 @@
 import { FC } from "react";
 import { Link, Outlet } from "react-router-dom";
 import { ThemeToggle } from "./ThemeToggle";
+import { AiFillHome } from "react-icons/ai";
+import { Search } from "./Search";
 export const Root: FC = () => {
   return (
     <div className="pb-4 mx-auto max-w-6xl flex">
       <div className="text-sm font-medium w-full flex flex-col">
-        <div className=" px-2 py-2 bg-purple-400 text-white dark:text-zinc-950 flex flex-row items-center overflow-hidden">
+        <div className="bg-purple-400 text-white dark:text-zinc-950 flex flex-row items-center overflow-hidden">
           <Link
             to={"/"}
-            className="text-xl font-bold flex h-10 flex-row items-center bg-white dark:bg-zinc-950 text-purple-400 w-20 hover:text-purple-500 justify-center shrink-0"
+            className="text-xl font-bold flex h-10 flex-row items-center bg-white dark:bg-zinc-950 text-purple-400 sm:w-20 hover:text-purple-500 justify-center shrink-0"
           >
-            <div className="">VODs</div>
+            <div className="hidden sm:block">VODs</div>
+            <div className="sm:hidden w-12 h-6">
+              <AiFillHome className="w-full h-full" />
+            </div>
           </Link>
           <div className="uppercase">
             <Link to={"/categories"}>
@@ -24,7 +29,9 @@ export const Root: FC = () => {
               </div>
             </Link>
           </div>
-          <div className="w-full"></div>
+          <div className="w-full h-full border-x-white dark:border-x-zinc-950 border-l-2">
+            <Search />
+          </div>
           <ThemeToggle />
         </div>
         <Outlet />
