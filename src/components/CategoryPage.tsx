@@ -44,8 +44,10 @@ export const CategoryPage: FC = () => {
       <Filters />
       {vods.result === "misformatted" ? (
         <div className="px-2">Misformatted response.</div>
-      ) : vods.result === "error" ? (
-        <div className="px-2">Fetch failed.</div>
+      ) : vods.result === "error" || vods.data.length === 0 ? (
+        <div className="px-2">
+          Category with ID <code>`{category}`</code> not found.
+        </div>
       ) : (
         <>
           <div className="font-bold text-base px-2 flex items-center h-6">

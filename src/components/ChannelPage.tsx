@@ -39,7 +39,7 @@ export const ChannelPage: FC = () => {
       <Filters />
       {vods.result === "misformatted" ? (
         <div className="px-2">Misformatted response.</div>
-      ) : vods.result === "error" ? (
+      ) : vods.result === "error" || vods.data.length === 0 ? (
         <div className="px-2">
           Channel <code>`{channelLogin}`</code> not found.
         </div>

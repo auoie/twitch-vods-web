@@ -44,7 +44,7 @@ export const LanguagePage: FC = () => {
       <Filters />
       {vods.result === "misformatted" ? (
         <div className="px-2">Misformatted response.</div>
-      ) : vods.result === "error" ? (
+      ) : vods.result === "error" || vods.data.length === 0 ? (
         <div className="px-2">
           Entries for language <code>`{language}`</code> not found.
         </div>
