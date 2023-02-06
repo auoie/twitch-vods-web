@@ -11,7 +11,7 @@ export const Filters: FC = () => {
   const [publicStatus, setPublicStatus] = useAtom(publicVods);
   const [subOnlyStatus, setSubOnlyStatus] = useAtom(subOnlyVods);
   return (
-    <div className="flex flex-row space-x-2 pl-2 text-white dark:text-zinc-950 pb-1 pt-2">
+    <div className="flex flex-row space-x-0.5 pl-2 text-white dark:text-zinc-950 pb-1 pt-0">
       <button
         onClick={() => {
           setPublicStatus((prev) =>

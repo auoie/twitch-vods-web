@@ -17,6 +17,7 @@ import "./index.css";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { LanguageList } from "./components/LanguageList";
 import { CategoryList } from "./components/CategoryList";
+import { SearchPage } from "./components/SearchPage";
 
 const channelPageLoader: LoaderFunction = async ({ params }) => {
   return params["channelLogin"] as string;
@@ -26,6 +27,9 @@ const languagePageLoader: LoaderFunction = async ({ params }) => {
 };
 const categoryPageloader: LoaderFunction = async ({ params }) => {
   return params["categoryId"] as string;
+};
+const searchPageLoader: LoaderFunction = async ({ params }) => {
+  return params["searchQuery"] as string;
 };
 const errorPageLoader: LoaderFunction = async ({ params }) => {
   return params["*"] as string;
@@ -64,6 +68,11 @@ const router = createBrowserRouter([
             path: "categories/:categoryId",
             element: <CategoryPage />,
             loader: categoryPageloader,
+          },
+          {
+            path: "search/:searchQuery",
+            element: <SearchPage />,
+            loader: searchPageLoader,
           },
           {
             path: "*",

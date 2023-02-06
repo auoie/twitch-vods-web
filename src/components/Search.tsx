@@ -41,7 +41,7 @@ export const Search: FC = () => {
   const finishSearch = () => {
     input.current?.blur();
     setSearch("");
-    navigate(`/channels/@${search.trim().toLowerCase()}`);
+    navigate(`/search/${search.trim().toLowerCase()}`);
   };
   return (
     <div className="w-full h-full bg-transparent appearance-none text-lg flex justify-end items-center relative">

@@ -60,5 +60,10 @@ export interface CategoryEntry {
   GameNameAtStart: string;
   GameIDAtStart: string;
 }
+export type TSearchEntries = TSearchEntry[];
+export type TSearchEntry = {
+  ProfileImageUrlAtStart: string;
+  StreamerLoginAtStart: string;
+};
 
 export type Res<Meta> = (ResGood | ResError | ResMisformatted) & Meta;
