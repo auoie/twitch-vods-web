@@ -4,17 +4,16 @@ import { useAtomValue } from "jotai";
 import { useQuery } from "@tanstack/react-query";
 import { Streams as TStreams } from "../type";
 import { is } from "typia";
-import { Filters, publicVods, subOnlyVods } from "./Filters";
+import { Filters, publicVods } from "./Filters";
 
 export const FrontPage: FC = () => {
   const publicStatus = useAtomValue(publicVods);
-  const subOnlyStatus = useAtomValue(subOnlyVods);
   const queryResponse = useQuery({
-    queryKey: [publicStatus, subOnlyStatus],
+    queryKey: [publicStatus],
     queryFn: async () => {
       try {
         const response = await fetch(
-          `${import.meta.env.VITE_API_URL}/all/${publicStatus}/${subOnlyStatus}`
+          `${import.meta.env.VITE_API_URL}/all/${publicStatus}`
         );
         const data = (await response.json()) as unknown;
         if (is<TStreams>(data)) {

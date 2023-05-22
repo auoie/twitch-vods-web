@@ -34,7 +34,7 @@ export const Root: FC = () => {
           </div>
           <ThemeToggle />
         </div>
-        <div className="px-2">Doesn't work anymore. Use Twitch VOD Downloader extension instead.</div>
+        <div className="px-2">Replenishing database.</div>
         <Outlet />
       </div>
     </div>

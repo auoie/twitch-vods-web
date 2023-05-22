@@ -61,7 +61,7 @@ export const SearchPage: FC = () => {
                     <div className="flex flex-row">
                       <Link to={`/channels/@${vod.StreamerLoginAtStart}`}>
                         <ImageOrEmpty
-                          src={vod.ProfileImageUrlAtStart}
+                          src={vod.ProfileImageUrlAtStart.String}
                           className="w-[50px] h-[50px] min-w-[50px] min-h-[50px] hover:shadow-md hover:shadow-purple-400 flex items-center justify-center text-xl select-none"
                         />
                       </Link>

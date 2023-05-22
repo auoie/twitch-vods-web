@@ -17,20 +17,23 @@ export type Metadata = {
   GameIDAtStart: string;
   BytesFound: BytesFound;
   Public: Public;
-  SubOnly: SubOnly;
   HlsDurationSeconds: HlsDurationSeconds;
-  BoxArtUrlAtStart: string;
-  ProfileImageUrlAtStart: string;
+  BoxArtUrlAtStart: BoxArtUrlAtStart;
+  ProfileImageUrlAtStart: ProfileImageUrlAtStart;
+};
+type BoxArtUrlAtStart = {
+  String: string;
+  Valid: boolean;
+};
+type ProfileImageUrlAtStart = {
+  String: string;
+  Valid: boolean;
 };
 type BytesFound = {
   Bool: boolean;
   Valid: boolean;
 };
 type Public = {
-  Bool: boolean;
-  Valid: boolean;
-};
-type SubOnly = {
   Bool: boolean;
   Valid: boolean;
 };
@@ -61,9 +64,9 @@ export interface CategoryEntry {
   GameIDAtStart: string;
 }
 export type TSearchEntries = TSearchEntry[];
-export type TSearchEntry = {
-  ProfileImageUrlAtStart: string;
+export interface TSearchEntry {
+  ProfileImageUrlAtStart: ProfileImageUrlAtStart;
   StreamerLoginAtStart: string;
-};
+}
 
 export type Res<Meta> = (ResGood | ResError | ResMisformatted) & Meta;

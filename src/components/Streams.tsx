@@ -6,9 +6,9 @@ import { durationToString } from "../utils";
 import { ImageOrEmpty } from "./ImageOrEmpty";
 
 const Game: FC<{ vod: Metadata }> = ({ vod }) => {
-  return vod.BoxArtUrlAtStart !== "" ? (
+  return vod.BoxArtUrlAtStart.Valid ? (
     <img
-      src={vod.BoxArtUrlAtStart}
+      src={vod.BoxArtUrlAtStart.String}
       width={35}
       height={49}
       alt={vod.GameNameAtStart}
@@ -55,7 +55,7 @@ export const Streams: FC<{ vods: StreamArr }> = ({ vods }) => {
             <div className="flex flex-row">
               <Link to={`/channels/@${vod.StreamerLoginAtStart}`}>
                 <ImageOrEmpty
-                  src={vod.ProfileImageUrlAtStart}
+                  src={vod.ProfileImageUrlAtStart.String}
                   className="w-[50px] h-[50px] min-w-[50px] min-h-[50px] hover:shadow-md hover:shadow-purple-400 flex items-center justify-center text-xl select-none"
                 />
               </Link>
@@ -108,17 +108,17 @@ export const Streams: FC<{ vods: StreamArr }> = ({ vods }) => {
                   <div className="w-4 flex justify-center items-center flex-shrink-0">
                     |
                   </div>
-                  <div className="w-8 flex flex-row justify-end flex-shrink-0">
+                  {/* <div className="w-8 flex flex-row justify-end flex-shrink-0">
                     {vod.SubOnly.Valid && (
                       <div className="">
                         {vod.SubOnly.Bool ? "Sub" : "Free"}
                       </div>
                     )}
-                  </div>
-                  <div className="w-4 flex justify-center items-center flex-shrink-0">
+                  </div> */}
+                  {/* <div className="w-4 flex justify-center items-center flex-shrink-0">
                     |
-                  </div>
-                  <div className="w-10 flex justify-end items-center flex-shrink-0">
+                  </div> */}
+                  <div className="w-[5.5rem] flex justify-end items-center flex-shrink-0">
                     @{vod.LanguageAtStart}
                   </div>
                   <div className="w-4 flex justify-center items-center flex-shrink-0">

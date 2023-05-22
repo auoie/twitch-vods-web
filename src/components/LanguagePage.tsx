@@ -2,23 +2,22 @@ import { FC } from "react";
 import { Streams } from "./Streams";
 import { Streams as TStreams } from "../type";
 import { useAtomValue } from "jotai";
-import { Filters, publicVods, subOnlyVods } from "./Filters";
+import { Filters, publicVods } from "./Filters";
 import { useQuery } from "@tanstack/react-query";
 import { is } from "typia";
 import { useLoaderData } from "react-router-dom";
 
 export const LanguagePage: FC = () => {
   const publicStatus = useAtomValue(publicVods);
-  const subOnlyStatus = useAtomValue(subOnlyVods);
   const language = useLoaderData() as string;
   const queryResponse = useQuery({
-    queryKey: ["language", language, publicStatus, subOnlyStatus],
+    queryKey: ["language", language, publicStatus],
     queryFn: async () => {
       try {
         const response = await fetch(
           `${
             import.meta.env.VITE_API_URL
-          }/language/${language}/all/${publicStatus}/${subOnlyStatus}`
+          }/language/${language}/all/${publicStatus}`
         );
         const data = (await response.json()) as unknown;
         if (is<TStreams>(data)) {
