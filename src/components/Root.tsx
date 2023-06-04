@@ -34,7 +34,6 @@ export const Root: FC = () => {
           </div>
           <ThemeToggle />
         </div>
-        <div className="px-2">Replenishing database.</div>
         <Outlet />
       </div>
     </div>
