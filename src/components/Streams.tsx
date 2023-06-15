@@ -70,7 +70,7 @@ export const Streams: FC<{ vods: StreamArr }> = ({ vods }) => {
             <div className="ml-2 w-full">
               <div className="text-ellipsis whitespace-nowrap w-full">
                 <div className="font-normal flex flex-row">
-                  <div className="w-40 flex-shrink-0 flex justify-end">
+                  <div className="w-[9.75rem] flex-shrink-0 flex justify-end">
                     {vod.StartTime}
                   </div>
                   <div className="w-4 flex justify-center items-center flex-shrink-0">
@@ -91,7 +91,7 @@ export const Streams: FC<{ vods: StreamArr }> = ({ vods }) => {
                   <div className="w-4 flex justify-center items-center flex-shrink-0">
                     |
                   </div>
-                  <div className="w-[5.5rem] flex justify-end flex-shrink-0">
+                  <div className="w-[5.25rem] flex justify-end flex-shrink-0">
                     {vod.StreamID}
                   </div>
                   <div className="w-4 flex justify-center items-center flex-shrink-0">
@@ -108,17 +108,7 @@ export const Streams: FC<{ vods: StreamArr }> = ({ vods }) => {
                   <div className="w-4 flex justify-center items-center flex-shrink-0">
                     |
                   </div>
-                  {/* <div className="w-8 flex flex-row justify-end flex-shrink-0">
-                    {vod.SubOnly.Valid && (
-                      <div className="">
-                        {vod.SubOnly.Bool ? "Sub" : "Free"}
-                      </div>
-                    )}
-                  </div> */}
-                  {/* <div className="w-4 flex justify-center items-center flex-shrink-0">
-                    |
-                  </div> */}
-                  <div className="w-[5.5rem] flex justify-end items-center flex-shrink-0">
+                  <div className="w-[5.25rem] flex justify-end items-center flex-shrink-0">
                     @{vod.LanguageAtStart}
                   </div>
                   <div className="w-4 flex justify-center items-center flex-shrink-0">
